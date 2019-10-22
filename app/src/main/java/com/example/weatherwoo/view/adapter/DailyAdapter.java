@@ -13,35 +13,36 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.weatherwoo.R;
 import com.example.weatherwoo.model.Daily;
+import com.example.weatherwoo.model.DailyDatum;
 import com.google.android.material.textview.MaterialTextView;
 
 import java.sql.Time;
-import java.util.List;
 
 public class DailyAdapter extends RecyclerView.Adapter<DailyAdapter.DailyViewHolder> {
     private Context context;
-    private List<Daily> dailyForecast;
+    private Daily dailyForecast;
 
-    public DailyAdapter(List<Daily> dailyForecast){
+    public DailyAdapter(Daily dailyForecast) {
         this.dailyForecast = dailyForecast;
     }
+
     @NonNull
     @Override
     public DailyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
 
         View theView = LayoutInflater.from(context)
-                .inflate(R.layout.daily_item,parent,false);
+                .inflate(R.layout.daily_item, parent, false);
 
         return new DailyViewHolder(theView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull DailyViewHolder holder, int position) {
-        Daily forecast = dailyForecast.get(position);
+        DailyDatum forecast = dailyForecast.getData().get(position);
 
         Log.e("Icon value", "Icon value was: " + forecast.getIcon());
-        switch (forecast.getIcon()){
+        switch (forecast.getIcon()) {
             case "cloudy":
                 Glide.with(context).load(R.drawable.cloudy).fitCenter().into(holder.weatherIcon);
                 break;
@@ -60,7 +61,7 @@ public class DailyAdapter extends RecyclerView.Adapter<DailyAdapter.DailyViewHol
             case "sleet":
                 Glide.with(context).load(R.drawable.sleet).fitCenter().into(holder.weatherIcon);
                 break;
-            case"fog":
+            case "fog":
                 Glide.with(context).load(R.drawable.fog).fitCenter().into(holder.weatherIcon);
                 break;
             case "clear-day":
@@ -74,15 +75,15 @@ public class DailyAdapter extends RecyclerView.Adapter<DailyAdapter.DailyViewHol
                 break;
         }
 
-        long timeAsLong = forecast.getData().get(position).getTime();
+        long timeAsLong = forecast.getTime();
         Time time = new Time(timeAsLong);
-        String timeAsString =String.format("HH:mm",time);
-        Double high = forecast.getData().get(0).getTemperatureHigh();
-        Double low = forecast.getData().get(0).getTemperatureLow();
+        String timeAsString = String.format("HH:mm", time);
+        Double high = forecast.getTemperatureHigh();
+        Double low = forecast.getTemperatureLow();
 
-        Log.e("Time Value","The time value is: " +timeAsString);
-        Log.e("High Value","The high for the day is: " + high);
-        Log.e("Low Value","The low for the day is: " + low);
+        Log.e("Time Value", "The time value is: " + timeAsString);
+        Log.e("High Value", "The high for the day is: " + high);
+        Log.e("Low Value", "The low for the day is: " + low);
 
         holder.tvTime.setText(timeAsString);
         holder.tvHigh.setText(String.valueOf(high));
@@ -92,14 +93,15 @@ public class DailyAdapter extends RecyclerView.Adapter<DailyAdapter.DailyViewHol
 
     @Override
     public int getItemCount() {
-        return dailyForecast.size();
+        return dailyForecast.getData().size();
     }
 
-    public class DailyViewHolder extends RecyclerView.ViewHolder{
+    class DailyViewHolder extends RecyclerView.ViewHolder {
 
         ImageView weatherIcon;
         MaterialTextView tvTime, tvHigh, tvLow;
-        public DailyViewHolder(@NonNull View itemView) {
+
+        DailyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             weatherIcon = itemView.findViewById(R.id.ivWeatherIcon);
