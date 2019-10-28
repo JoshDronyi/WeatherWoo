@@ -4,7 +4,7 @@ package com.example.weatherwoo.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class HourlyDatum {
+public class HourlyData {
 
     @SerializedName("time")
     @Expose
@@ -44,16 +44,16 @@ public class HourlyDatum {
     private Double windGust;
     @SerializedName("windBearing")
     @Expose
-    private Long windBearing;
+    private Double windBearing;
     @SerializedName("cloudCover")
     @Expose
     private Double cloudCover;
     @SerializedName("uvIndex")
     @Expose
-    private Long uvIndex;
+    private Double uvIndex;
     @SerializedName("visibility")
     @Expose
-    private Long visibility;
+    private Double visibility;
     @SerializedName("ozone")
     @Expose
     private Double ozone;
@@ -157,11 +157,11 @@ public class HourlyDatum {
         this.windGust = windGust;
     }
 
-    public Long getWindBearing() {
+    public Double getWindBearing() {
         return windBearing;
     }
 
-    public void setWindBearing(Long windBearing) {
+    public void setWindBearing(Double windBearing) {
         this.windBearing = windBearing;
     }
 
@@ -173,19 +173,19 @@ public class HourlyDatum {
         this.cloudCover = cloudCover;
     }
 
-    public Long getUvIndex() {
+    public Double getUvIndex() {
         return uvIndex;
     }
 
-    public void setUvIndex(Long uvIndex) {
+    public void setUvIndex(Double uvIndex) {
         this.uvIndex = uvIndex;
     }
 
-    public Long getVisibility() {
+    public Double getVisibility() {
         return visibility;
     }
 
-    public void setVisibility(Long visibility) {
+    public void setVisibility(Double visibility) {
         this.visibility = visibility;
     }
 

@@ -20,6 +20,7 @@
         app:layout_constraintVertical_bias="0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/currently_background"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -65,7 +66,7 @@
         android:id="@+id/divider_1"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
+        android:background="@android:color/white"
         app:layout_constraintTop_toBottomOf="@id/layout_header"/>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -86,7 +87,7 @@
         android:id="@+id/divider_2"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
+        android:background="@android:color/white"
         app:layout_constraintTop_toBottomOf="@id/rv_hourly"/>
 
     <androidx.recyclerview.widget.RecyclerView

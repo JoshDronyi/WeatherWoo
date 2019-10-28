@@ -4,7 +4,7 @@ package com.example.weatherwoo.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class DailyDatum {
+public class DailyData {
 
     @SerializedName("time")
     @Expose
@@ -17,10 +17,10 @@ public class DailyDatum {
     private String icon;
     @SerializedName("sunriseTime")
     @Expose
-    private Long sunriseTime;
+    private Double sunriseTime;
     @SerializedName("sunsetTime")
     @Expose
-    private Long sunsetTime;
+    private Double sunsetTime;
     @SerializedName("moonPhase")
     @Expose
     private Double moonPhase;
@@ -32,7 +32,7 @@ public class DailyDatum {
     private Double precipIntensityMax;
     @SerializedName("precipIntensityMaxTime")
     @Expose
-    private Long precipIntensityMaxTime;
+    private Double precipIntensityMaxTime;
     @SerializedName("precipProbability")
     @Expose
     private Double precipProbability;
@@ -44,25 +44,25 @@ public class DailyDatum {
     private Double temperatureHigh;
     @SerializedName("temperatureHighTime")
     @Expose
-    private Long temperatureHighTime;
+    private Double temperatureHighTime;
     @SerializedName("temperatureLow")
     @Expose
     private Double temperatureLow;
     @SerializedName("temperatureLowTime")
     @Expose
-    private Long temperatureLowTime;
+    private Double temperatureLowTime;
     @SerializedName("apparentTemperatureHigh")
     @Expose
     private Double apparentTemperatureHigh;
     @SerializedName("apparentTemperatureHighTime")
     @Expose
-    private Long apparentTemperatureHighTime;
+    private Double apparentTemperatureHighTime;
     @SerializedName("apparentTemperatureLow")
     @Expose
     private Double apparentTemperatureLow;
     @SerializedName("apparentTemperatureLowTime")
     @Expose
-    private Long apparentTemperatureLowTime;
+    private Double apparentTemperatureLowTime;
     @SerializedName("dewPoint")
     @Expose
     private Double dewPoint;
@@ -80,22 +80,22 @@ public class DailyDatum {
     private Double windGust;
     @SerializedName("windGustTime")
     @Expose
-    private Long windGustTime;
+    private Double windGustTime;
     @SerializedName("windBearing")
     @Expose
-    private Long windBearing;
+    private Double windBearing;
     @SerializedName("cloudCover")
     @Expose
-    private Long cloudCover;
+    private Double cloudCover;
     @SerializedName("uvIndex")
     @Expose
-    private Long uvIndex;
+    private Double uvIndex;
     @SerializedName("uvIndexTime")
     @Expose
-    private Long uvIndexTime;
+    private Double uvIndexTime;
     @SerializedName("visibility")
     @Expose
-    private Long visibility;
+    private Double visibility;
     @SerializedName("ozone")
     @Expose
     private Double ozone;
@@ -104,25 +104,25 @@ public class DailyDatum {
     private Double temperatureMin;
     @SerializedName("temperatureMinTime")
     @Expose
-    private Long temperatureMinTime;
+    private Double temperatureMinTime;
     @SerializedName("temperatureMax")
     @Expose
     private Double temperatureMax;
     @SerializedName("temperatureMaxTime")
     @Expose
-    private Long temperatureMaxTime;
+    private Double temperatureMaxTime;
     @SerializedName("apparentTemperatureMin")
     @Expose
     private Double apparentTemperatureMin;
     @SerializedName("apparentTemperatureMinTime")
     @Expose
-    private Long apparentTemperatureMinTime;
+    private Double apparentTemperatureMinTime;
     @SerializedName("apparentTemperatureMax")
     @Expose
     private Double apparentTemperatureMax;
     @SerializedName("apparentTemperatureMaxTime")
     @Expose
-    private Long apparentTemperatureMaxTime;
+    private Double apparentTemperatureMaxTime;
 
     public Long getTime() {
         return time;
@@ -148,19 +148,19 @@ public class DailyDatum {
         this.icon = icon;
     }
 
-    public Long getSunriseTime() {
+    public Double getSunriseTime() {
         return sunriseTime;
     }
 
-    public void setSunriseTime(Long sunriseTime) {
+    public void setSunriseTime(Double sunriseTime) {
         this.sunriseTime = sunriseTime;
     }
 
-    public Long getSunsetTime() {
+    public Double getSunsetTime() {
         return sunsetTime;
     }
 
-    public void setSunsetTime(Long sunsetTime) {
+    public void setSunsetTime(Double sunsetTime) {
         this.sunsetTime = sunsetTime;
     }
 
@@ -188,11 +188,11 @@ public class DailyDatum {
         this.precipIntensityMax = precipIntensityMax;
     }
 
-    public Long getPrecipIntensityMaxTime() {
+    public Double getPrecipIntensityMaxTime() {
         return precipIntensityMaxTime;
     }
 
-    public void setPrecipIntensityMaxTime(Long precipIntensityMaxTime) {
+    public void setPrecipIntensityMaxTime(Double precipIntensityMaxTime) {
         this.precipIntensityMaxTime = precipIntensityMaxTime;
     }
 
@@ -220,11 +220,11 @@ public class DailyDatum {
         this.temperatureHigh = temperatureHigh;
     }
 
-    public Long getTemperatureHighTime() {
+    public Double getTemperatureHighTime() {
         return temperatureHighTime;
     }
 
-    public void setTemperatureHighTime(Long temperatureHighTime) {
+    public void setTemperatureHighTime(Double temperatureHighTime) {
         this.temperatureHighTime = temperatureHighTime;
     }
 
@@ -236,11 +236,11 @@ public class DailyDatum {
         this.temperatureLow = temperatureLow;
     }
 
-    public Long getTemperatureLowTime() {
+    public Double getTemperatureLowTime() {
         return temperatureLowTime;
     }
 
-    public void setTemperatureLowTime(Long temperatureLowTime) {
+    public void setTemperatureLowTime(Double temperatureLowTime) {
         this.temperatureLowTime = temperatureLowTime;
     }
 
@@ -252,11 +252,11 @@ public class DailyDatum {
         this.apparentTemperatureHigh = apparentTemperatureHigh;
     }
 
-    public Long getApparentTemperatureHighTime() {
+    public Double getApparentTemperatureHighTime() {
         return apparentTemperatureHighTime;
     }
 
-    public void setApparentTemperatureHighTime(Long apparentTemperatureHighTime) {
+    public void setApparentTemperatureHighTime(Double apparentTemperatureHighTime) {
         this.apparentTemperatureHighTime = apparentTemperatureHighTime;
     }
 
@@ -268,11 +268,11 @@ public class DailyDatum {
         this.apparentTemperatureLow = apparentTemperatureLow;
     }
 
-    public Long getApparentTemperatureLowTime() {
+    public Double getApparentTemperatureLowTime() {
         return apparentTemperatureLowTime;
     }
 
-    public void setApparentTemperatureLowTime(Long apparentTemperatureLowTime) {
+    public void setApparentTemperatureLowTime(Double apparentTemperatureLowTime) {
         this.apparentTemperatureLowTime = apparentTemperatureLowTime;
     }
 
@@ -316,51 +316,51 @@ public class DailyDatum {
         this.windGust = windGust;
     }
 
-    public Long getWindGustTime() {
+    public Double getWindGustTime() {
         return windGustTime;
     }
 
-    public void setWindGustTime(Long windGustTime) {
+    public void setWindGustTime(Double windGustTime) {
         this.windGustTime = windGustTime;
     }
 
-    public Long getWindBearing() {
+    public Double getWindBearing() {
         return windBearing;
     }
 
-    public void setWindBearing(Long windBearing) {
+    public void setWindBearing(Double windBearing) {
         this.windBearing = windBearing;
     }
 
-    public Long getCloudCover() {
+    public Double getCloudCover() {
         return cloudCover;
     }
 
-    public void setCloudCover(Long cloudCover) {
+    public void setCloudCover(Double cloudCover) {
         this.cloudCover = cloudCover;
     }
 
-    public Long getUvIndex() {
+    public Double getUvIndex() {
         return uvIndex;
     }
 
-    public void setUvIndex(Long uvIndex) {
+    public void setUvIndex(Double uvIndex) {
         this.uvIndex = uvIndex;
     }
 
-    public Long getUvIndexTime() {
+    public Double getUvIndexTime() {
         return uvIndexTime;
     }
 
-    public void setUvIndexTime(Long uvIndexTime) {
+    public void setUvIndexTime(Double uvIndexTime) {
         this.uvIndexTime = uvIndexTime;
     }
 
-    public Long getVisibility() {
+    public Double getVisibility() {
         return visibility;
     }
 
-    public void setVisibility(Long visibility) {
+    public void setVisibility(Double visibility) {
         this.visibility = visibility;
     }
 
@@ -380,11 +380,11 @@ public class DailyDatum {
         this.temperatureMin = temperatureMin;
     }
 
-    public Long getTemperatureMinTime() {
+    public Double getTemperatureMinTime() {
         return temperatureMinTime;
     }
 
-    public void setTemperatureMinTime(Long temperatureMinTime) {
+    public void setTemperatureMinTime(Double temperatureMinTime) {
         this.temperatureMinTime = temperatureMinTime;
     }
 
@@ -396,11 +396,11 @@ public class DailyDatum {
         this.temperatureMax = temperatureMax;
     }
 
-    public Long getTemperatureMaxTime() {
+    public Double getTemperatureMaxTime() {
         return temperatureMaxTime;
     }
 
-    public void setTemperatureMaxTime(Long temperatureMaxTime) {
+    public void setTemperatureMaxTime(Double temperatureMaxTime) {
         this.temperatureMaxTime = temperatureMaxTime;
     }
 
@@ -412,11 +412,11 @@ public class DailyDatum {
         this.apparentTemperatureMin = apparentTemperatureMin;
     }
 
-    public Long getApparentTemperatureMinTime() {
+    public Double getApparentTemperatureMinTime() {
         return apparentTemperatureMinTime;
     }
 
-    public void setApparentTemperatureMinTime(Long apparentTemperatureMinTime) {
+    public void setApparentTemperatureMinTime(Double apparentTemperatureMinTime) {
         this.apparentTemperatureMinTime = apparentTemperatureMinTime;
     }
 
@@ -428,11 +428,11 @@ public class DailyDatum {
         this.apparentTemperatureMax = apparentTemperatureMax;
     }
 
-    public Long getApparentTemperatureMaxTime() {
+    public Double getApparentTemperatureMaxTime() {
         return apparentTemperatureMaxTime;
     }
 
-    public void setApparentTemperatureMaxTime(Long apparentTemperatureMaxTime) {
+    public void setApparentTemperatureMaxTime(Double apparentTemperatureMaxTime) {
         this.apparentTemperatureMaxTime = apparentTemperatureMaxTime;
     }
 

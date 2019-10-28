@@ -15,7 +15,7 @@ public class Hourly {
     private String icon;
     @SerializedName("data")
     @Expose
-    private List<HourlyDatum> data = null;
+    private List<HourlyData> data = null;
 
     public String getSummary() {
         return summary;
@@ -33,11 +33,11 @@ public class Hourly {
         this.icon = icon;
     }
 
-    public List<HourlyDatum> getData() {
+    public List<HourlyData> getData() {
         return data;
     }
 
-    public void setData(List<HourlyDatum> data) {
+    public void setData(List<HourlyData> data) {
         this.data = data;
     }
 

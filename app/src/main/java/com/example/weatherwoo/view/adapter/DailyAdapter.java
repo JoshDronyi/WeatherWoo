@@ -1,6 +1,7 @@
 package com.example.weatherwoo.view.adapter;
 
 import android.content.Context;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,17 +13,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.weatherwoo.R;
-import com.example.weatherwoo.model.Daily;
-import com.example.weatherwoo.model.DailyDatum;
+import com.example.weatherwoo.commons.WeatherUtils;
+import com.example.weatherwoo.model.DailyData;
 import com.google.android.material.textview.MaterialTextView;
 
-import java.sql.Time;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Locale;
 
 public class DailyAdapter extends RecyclerView.Adapter<DailyAdapter.DailyViewHolder> {
     private Context context;
-    private Daily dailyForecast;
+    private List<DailyData> dailyForecast;
 
-    public DailyAdapter(Daily dailyForecast) {
+    public DailyAdapter(List<DailyData> dailyForecast) {
         this.dailyForecast = dailyForecast;
     }
 
@@ -39,45 +42,47 @@ public class DailyAdapter extends RecyclerView.Adapter<DailyAdapter.DailyViewHol
 
     @Override
     public void onBindViewHolder(@NonNull DailyViewHolder holder, int position) {
-        DailyDatum forecast = dailyForecast.getData().get(position);
+        DailyData forecast = dailyForecast.get(position);
 
         Log.e("Icon value", "Icon value was: " + forecast.getIcon());
-        switch (forecast.getIcon()) {
-            case "cloudy":
-                Glide.with(context).load(R.drawable.cloudy).fitCenter().into(holder.weatherIcon);
+        int icon = WeatherUtils.getweatherIcon(forecast.getIcon());
+        int lightText = context.getResources().getColor(R.color.lightText);
+        int darkText = context.getResources().getColor(R.color.darkText);
+        int medText = context.getResources().getColor(R.color.medText);
+        int lightBackground = context.getResources().getColor(R.color.clearSkyDay);
+        int medBackground = context.getResources().getColor(R.color.darkSkyDay);
+        int darkBackground = context.getResources().getColor(R.color.nightSky);
+        switch (icon) {
+            case R.drawable.cloudy:
+            case R.drawable.fog:
+            case R.drawable.clear_day:
+                holder.background.setBackgroundColor(lightBackground);
+                holder.tvHigh.setTextColor(darkText);
+                holder.tvLow.setTextColor(darkText);
+                holder.tvTime.setTextColor(darkText);
                 break;
-            case "snow":
-                Glide.with(context).load(R.drawable.snow).fitCenter().into(holder.weatherIcon);
+            case R.drawable.snow:
+            case R.drawable.partly_cloudy_night:
+            case R.drawable.sleet:
+            case R.drawable.hail:
+            case R.drawable.partly_cloudy_day:
+                holder.background.setBackgroundColor(medBackground);
+                holder.tvHigh.setTextColor(medText);
+                holder.tvLow.setTextColor(medText);
+                holder.tvTime.setTextColor(medText);
                 break;
-            case "rain":
-                Glide.with(context).load(R.drawable.rain).fitCenter().into(holder.weatherIcon);
-                break;
-            case "partly-cloudy-day":
-                Glide.with(context).load(R.drawable.partly_cloudy_day).fitCenter().into(holder.weatherIcon);
-                break;
-            case "partly-cloudy-night":
-                Glide.with(context).load(R.drawable.partly_cloudy_night).fitCenter().into(holder.weatherIcon);
-                break;
-            case "sleet":
-                Glide.with(context).load(R.drawable.sleet).fitCenter().into(holder.weatherIcon);
-                break;
-            case "fog":
-                Glide.with(context).load(R.drawable.fog).fitCenter().into(holder.weatherIcon);
-                break;
-            case "clear-day":
-                Glide.with(context).load(R.drawable.clear_day).fitCenter().into(holder.weatherIcon);
-                break;
-            case "clear-night":
-                Glide.with(context).load(R.drawable.clear_night).fitCenter().into(holder.weatherIcon);
-                break;
-            case "hail":
-                Glide.with(context).load(R.drawable.hail).fitCenter().into(holder.weatherIcon);
+            case R.drawable.rain:
+            case R.drawable.clear_night:
+                holder.background.setBackgroundColor(darkBackground);
+                holder.tvHigh.setTextColor(lightText);
+                holder.tvLow.setTextColor(lightText);
+                holder.tvTime.setTextColor(lightText);
                 break;
         }
 
-        long timeAsLong = forecast.getTime();
-        Time time = new Time(timeAsLong);
-        String timeAsString = String.format("HH:mm", time);
+        Glide.with(context).load(icon).fitCenter().into(holder.ivWeatherIcon);
+
+        String timeAsString = getDayOfWeek(forecast.getTime());
         Double high = forecast.getTemperatureHigh();
         Double low = forecast.getTemperatureLow();
 
@@ -86,29 +91,47 @@ public class DailyAdapter extends RecyclerView.Adapter<DailyAdapter.DailyViewHol
         Log.e("Low Value", "The low for the day is: " + low);
 
         holder.tvTime.setText(timeAsString);
-        holder.tvHigh.setText(String.valueOf(high));
-        holder.tvLow.setText(String.valueOf(low));
+
+
+        holder.tvHigh.setText(formattedTemp(high));
+        holder.tvLow.setText(formattedTemp(low));
+
+    }
+
+    String getDayOfWeek(long time) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(time * 1000);
+
+        return DateFormat.format("EEEE", calendar).toString();
 
     }
 
     @Override
     public int getItemCount() {
-        return dailyForecast.getData().size();
+        return dailyForecast.size();
     }
 
     class DailyViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView weatherIcon;
+        ImageView ivWeatherIcon;
         MaterialTextView tvTime, tvHigh, tvLow;
+        View background;
 
         DailyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            weatherIcon = itemView.findViewById(R.id.ivWeatherIcon);
+            ivWeatherIcon = itemView.findViewById(R.id.ivWeatherIcon);
             tvTime = itemView.findViewById(R.id.tvTime);
             tvHigh = itemView.findViewById(R.id.tvHigh);
             tvLow = itemView.findViewById(R.id.tvLow);
+            background = itemView.findViewById(R.id.daily_background);
         }
 
+    }
+
+    private String formattedTemp(double temp) {
+
+        long stringVal = Math.round(temp);
+        return String.format(Locale.US, "% d\u00B0", stringVal);
     }
 }

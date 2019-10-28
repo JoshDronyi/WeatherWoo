@@ -17,16 +17,16 @@ public class Currently {
     private String icon;
     @SerializedName("nearestStormDistance")
     @Expose
-    private Long nearestStormDistance;
+    private Double nearestStormDistance;
     @SerializedName("nearestStormBearing")
     @Expose
-    private Long nearestStormBearing;
+    private Double nearestStormBearing;
     @SerializedName("precipIntensity")
     @Expose
-    private Long precipIntensity;
+    private Double precipIntensity;
     @SerializedName("precipProbability")
     @Expose
-    private Long precipProbability;
+    private Double precipProbability;
     @SerializedName("temperature")
     @Expose
     private Double temperature;
@@ -50,16 +50,16 @@ public class Currently {
     private Double windGust;
     @SerializedName("windBearing")
     @Expose
-    private Long windBearing;
+    private Double windBearing;
     @SerializedName("cloudCover")
     @Expose
     private Double cloudCover;
     @SerializedName("uvIndex")
     @Expose
-    private Long uvIndex;
+    private Double uvIndex;
     @SerializedName("visibility")
     @Expose
-    private Long visibility;
+    private Double visibility;
     @SerializedName("ozone")
     @Expose
     private Double ozone;
@@ -88,35 +88,35 @@ public class Currently {
         this.icon = icon;
     }
 
-    public Long getNearestStormDistance() {
+    public Double getNearestStormDistance() {
         return nearestStormDistance;
     }
 
-    public void setNearestStormDistance(Long nearestStormDistance) {
+    public void setNearestStormDistance(Double nearestStormDistance) {
         this.nearestStormDistance = nearestStormDistance;
     }
 
-    public Long getNearestStormBearing() {
+    public Double getNearestStormBearing() {
         return nearestStormBearing;
     }
 
-    public void setNearestStormBearing(Long nearestStormBearing) {
+    public void setNearestStormBearing(Double nearestStormBearing) {
         this.nearestStormBearing = nearestStormBearing;
     }
 
-    public Long getPrecipIntensity() {
+    public Double getPrecipIntensity() {
         return precipIntensity;
     }
 
-    public void setPrecipIntensity(Long precipIntensity) {
+    public void setPrecipIntensity(Double precipIntensity) {
         this.precipIntensity = precipIntensity;
     }
 
-    public Long getPrecipProbability() {
+    public Double getPrecipProbability() {
         return precipProbability;
     }
 
-    public void setPrecipProbability(Long precipProbability) {
+    public void setPrecipProbability(Double precipProbability) {
         this.precipProbability = precipProbability;
     }
 
@@ -176,11 +176,11 @@ public class Currently {
         this.windGust = windGust;
     }
 
-    public Long getWindBearing() {
+    public Double getWindBearing() {
         return windBearing;
     }
 
-    public void setWindBearing(Long windBearing) {
+    public void setWindBearing(Double windBearing) {
         this.windBearing = windBearing;
     }
 
@@ -192,19 +192,19 @@ public class Currently {
         this.cloudCover = cloudCover;
     }
 
-    public Long getUvIndex() {
+    public Double getUvIndex() {
         return uvIndex;
     }
 
-    public void setUvIndex(Long uvIndex) {
+    public void setUvIndex(Double uvIndex) {
         this.uvIndex = uvIndex;
     }
 
-    public Long getVisibility() {
+    public Double getVisibility() {
         return visibility;
     }
 
-    public void setVisibility(Long visibility) {
+    public void setVisibility(Double visibility) {
         this.visibility = visibility;
     }
 

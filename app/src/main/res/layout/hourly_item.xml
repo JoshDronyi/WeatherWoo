@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/hourly_background"
     android:layout_width="wrap_content"
     android:layout_height="150dp"
     android:padding="8dp">
@@ -23,7 +24,6 @@
         android:layout_height="50dp"
         android:layout_marginTop="3dp"
         android:layout_marginBottom="3dp"
-        android:background="@color/colorPrimaryDark"
         android:contentDescription="@string/forecast_icon"
         app:layout_constraintBottom_toTopOf="@id/tv_temp"
         app:layout_constraintEnd_toEndOf="@id/tvTime"

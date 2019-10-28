@@ -3,4 +3,11 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="clearSkyDay">#35D4E9</color>
+    <color name="darkSkyDay">#0D93A7</color>
+    <color name="nightSky">#0B3D7C</color>
+    <color name="gray">#ACACAC</color>
+    <color name="darkText">#020268</color>
+    <color name="lightText">#58CFFF</color>
+    <color name="medText">#00FFE1</color>
 </resources>

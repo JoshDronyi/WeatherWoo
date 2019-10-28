@@ -11,18 +11,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.weatherwoo.R;
-import com.example.weatherwoo.model.Hourly;
-import com.example.weatherwoo.model.HourlyDatum;
+import com.example.weatherwoo.commons.WeatherUtils;
+import com.example.weatherwoo.model.HourlyData;
 import com.google.android.material.textview.MaterialTextView;
 
 import java.sql.Time;
-import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.Locale;
 
 public class HourlyAdapter extends RecyclerView.Adapter<HourlyAdapter.HourlyViewHolder> {
-    Context context;
-    Hourly hourlyForecast;
+    private Context context;
+    private List<HourlyData> hourlyForecast;
 
-    public HourlyAdapter(Hourly hourlyForecast) {
+    public HourlyAdapter(List<HourlyData> hourlyForecast) {
         this.hourlyForecast = hourlyForecast;
     }
 
@@ -39,44 +40,47 @@ public class HourlyAdapter extends RecyclerView.Adapter<HourlyAdapter.HourlyView
 
     @Override
     public void onBindViewHolder(@NonNull HourlyViewHolder holder, int position) {
-        HourlyDatum hourly = hourlyForecast.getData().get(position);
+        HourlyData hourly = hourlyForecast.get(position);
 
-        switch (hourly.getIcon()) {
-            case "cloudy":
-                Glide.with(context).load(R.drawable.cloudy).fitCenter().into(holder.ivWeatherIcon);
+        int icon = WeatherUtils.getweatherIcon(hourly.getIcon());
+        int lightText = context.getResources().getColor(R.color.lightText);
+        int darkText = context.getResources().getColor(R.color.darkText);
+        int medText = context.getResources().getColor(R.color.medText);
+        int lightBackground = context.getResources().getColor(R.color.clearSkyDay);
+        int medBackground = context.getResources().getColor(R.color.darkSkyDay);
+        int darkBackground = context.getResources().getColor(R.color.nightSky);
+        switch (icon) {
+            case R.drawable.cloudy:
+            case R.drawable.fog:
+            case R.drawable.clear_day:
+                holder.background.setBackgroundColor(lightBackground);
+                holder.tvTemp.setTextColor(darkText);
+                holder.tvTime.setTextColor(darkText);
                 break;
-            case "snow":
-                Glide.with(context).load(R.drawable.snow).fitCenter().into(holder.ivWeatherIcon);
+            case R.drawable.snow:
+            case R.drawable.partly_cloudy_night:
+            case R.drawable.sleet:
+            case R.drawable.hail:
+            case R.drawable.partly_cloudy_day:
+                holder.background.setBackgroundColor(medBackground);
+                holder.tvTemp.setTextColor(medText);
+                holder.tvTime.setTextColor(medText);
                 break;
-            case "rain":
-                Glide.with(context).load(R.drawable.rain).fitCenter().into(holder.ivWeatherIcon);
-                break;
-            case "partly-cloudy-day":
-                Glide.with(context).load(R.drawable.partly_cloudy_day).fitCenter().into(holder.ivWeatherIcon);
-                break;
-            case "partly-cloudy-night":
-                Glide.with(context).load(R.drawable.partly_cloudy_night).fitCenter().into(holder.ivWeatherIcon);
-                break;
-            case "sleet":
-                Glide.with(context).load(R.drawable.sleet).fitCenter().into(holder.ivWeatherIcon);
-                break;
-            case "fog":
-                Glide.with(context).load(R.drawable.fog).fitCenter().into(holder.ivWeatherIcon);
-                break;
-            case "clear-day":
-                Glide.with(context).load(R.drawable.clear_day).fitCenter().into(holder.ivWeatherIcon);
-                break;
-            case "clear-night":
-                Glide.with(context).load(R.drawable.clear_night).fitCenter().into(holder.ivWeatherIcon);
-                break;
-            case "hail":
-                Glide.with(context).load(R.drawable.hail).fitCenter().into(holder.ivWeatherIcon);
+            case R.drawable.rain:
+            case R.drawable.clear_night:
+                holder.background.setBackgroundColor(darkBackground);
+                holder.tvTemp.setTextColor(lightText);
+                holder.tvTime.setTextColor(lightText);
                 break;
         }
 
+        Glide.with(context).load(icon).fitCenter().into(holder.ivWeatherIcon);
+
         Time time = new Time(hourly.getTime());
-        String timeAsString = SimpleDateFormat.getTimeInstance().format(time);
-        String hourlyTemps = String.format("", hourly.getTemperature());
+        String timeAsString = String.format(Locale.US, "%tr", time);
+
+        long hourlyTemp = Math.round(hourly.getTemperature());
+        String hourlyTemps = String.format(Locale.US, "% d\u00B0", hourlyTemp);
 
 
         holder.tvTime.setText(timeAsString);
@@ -87,20 +91,23 @@ public class HourlyAdapter extends RecyclerView.Adapter<HourlyAdapter.HourlyView
 
     @Override
     public int getItemCount() {
-        return hourlyForecast.getData().size();
+        return hourlyForecast.size();
     }
 
-    public class HourlyViewHolder extends RecyclerView.ViewHolder {
+    class HourlyViewHolder extends RecyclerView.ViewHolder {
 
         ImageView ivWeatherIcon;
         MaterialTextView tvTime, tvTemp;
+        View background;
 
 
-        public HourlyViewHolder(@NonNull View itemView) {
+        HourlyViewHolder(@NonNull View itemView) {
             super(itemView);
             ivWeatherIcon = itemView.findViewById(R.id.ivWeatherIcon);
             tvTemp = itemView.findViewById(R.id.tv_temp);
             tvTime = itemView.findViewById(R.id.tvTime);
+            background = itemView.findViewById(R.id.hourly_background);
         }
     }
+
 }
